@@ -1,1 +1,4 @@
-# LabLogic_Backend
+### LabLogic Backend
+
+Backend using MongoDB and ExpressJS
+Auth ✅
