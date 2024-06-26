@@ -1,4 +1,3 @@
-// models/User.js
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -7,10 +6,14 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  notebooks: {
-    type: Number,
-    default: 5,
-  },
+  notebooks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Notebook',
+  }],
+  premium: {
+    type: Boolean,
+    default: false,
+  }
 }, { collection: 'users' });
 
 module.exports = mongoose.model('User', UserSchema);

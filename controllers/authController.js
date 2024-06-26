@@ -50,6 +50,7 @@ const getUserInfo = async (req, res) => {
       _id: user._id,
       email: user.email,
       notebooks: user.notebooks,
+      premium: user.premium,
     });
   } catch (error) {
     return res.status(500).json({ error: 'Server error' });
