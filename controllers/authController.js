@@ -34,6 +34,7 @@ const verifyUser = async (req, res) => {
       notebooks: user.notebooks,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: 'Server error' });
   }
 };

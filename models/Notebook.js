@@ -9,6 +9,10 @@ const NotebookSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
+  name: {
+    type: String,
+    required: true,
+  },
 }, { collection: 'notebooks' });
 
 module.exports = mongoose.model('Notebook', NotebookSchema);

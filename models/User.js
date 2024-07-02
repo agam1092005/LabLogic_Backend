@@ -6,9 +6,9 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  notebooks: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Notebook',
+  notebooks: [    {
+    _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Notebook' },
+    name: String
   }],
   premium: {
     type: Boolean,
