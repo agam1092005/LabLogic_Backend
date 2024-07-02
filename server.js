@@ -17,6 +17,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
+app.use('/', (req, res) => res.json({ message: 'LabLogic Backend' }));
+
 app.use('/api/auth', authRoutes);
 app.use('/api/notebook', notebookRoutes);
 
