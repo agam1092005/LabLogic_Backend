@@ -39,4 +39,18 @@ const getNotebooks = async (req, res) => {
   }
 };
 
-module.exports = { createNotebook, getNotebooks };
+const getNotebookById = async (req, res) => {
+  try {
+    const notebook = await Notebook.findById(req.params.id);
+
+    if (!notebook) {
+      return res.status(404).json({ error: 'Notebook not found' });
+    }
+
+    return res.status(200).json(notebook);
+  } catch (error) {
+    return res.status(500).json({ error: 'Server error' });
+  }
+};
+
+module.exports = { createNotebook, getNotebooks, getNotebookById };
