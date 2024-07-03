@@ -53,4 +53,33 @@ const getNotebookById = async (req, res) => {
   }
 };
 
-module.exports = { createNotebook, getNotebooks, getNotebookById };
+const deleteNotebook = async (req, res) => {
+  try {
+    const notebookId = req.params.id;
+
+    // Find the notebook
+    const notebook = await Notebook.findById(notebookId);
+    if (!notebook) {
+      return res.status(404).json({ error: 'Notebook not found' });
+    }
+
+    // Delete the notebook
+    await Notebook.deleteOne({ _id: notebookId });
+
+    // Remove notebook reference from the user's notebooks array
+    await User.findByIdAndUpdate(
+      req.userId,
+      {
+        $pull: {
+          notebooks: { _id: notebookId }
+        }
+      }
+    );
+
+    return res.status(200).json({ message: 'Notebook deleted successfully' });
+  } catch (error) {
+    return res.status(500).json({ error: 'Server error' });
+  }
+};
+
+module.exports = { createNotebook, getNotebooks, getNotebookById, deleteNotebook };
